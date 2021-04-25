@@ -1,0 +1,11 @@
+apiVersion: v1 
+kind: Pod 
+metadata:
+ name: demo-pod 
+ labels:
+  app: demo-app
+spec:
+ containers: 
+ - name: demo-app-container 
+   image: busybox 
+   command: ['sh', '-c', 'echo hello KCAD & sleep 3600'] 

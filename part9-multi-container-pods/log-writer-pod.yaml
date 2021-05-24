@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: log-writer
+spec:
+  containers:
+    - name: log-writer
+      image: busybox
+      imagePullPolicy: Always
+      command: ['sh', '-c', 'cat hello from log-writer container']
+      volumeMounts:
+        - name: log-volume
+          mountPath: /var/demo/logs
+  volumes:
+    - name: log-volume

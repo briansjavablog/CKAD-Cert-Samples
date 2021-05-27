@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: readiness-probe-unhealthy
+spec:
+  containers:
+    - name: readiness-probe-container
+      image: nginx
+      readinessProbe:
+        httpGet:
+          path: /bla
+          port: 80
+        initialDelaySeconds: 3
+        periodSeconds: 3

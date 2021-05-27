@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: liveness-pod-unhealthy
+spec:
+  containers:
+    - name: liveness-container
+      image: busybox
+      command: ['sh', '-c', 'echo unhealthy >> /var/demo/unhealthy.txt && sleep 3600']
+      livenessProbe:
+        exec:
+          command: ['sh', '-c', 'cat /var/demo/health.txt']
+        initialDelaySeconds: 3
+        periodSeconds: 3
+      volumeMounts:
+        - name: health-status-volume
+          mountPath: /var/demo
+  volumes:
+    - name: health-status-volume

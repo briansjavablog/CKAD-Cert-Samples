@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+ name: dev-pod
+ labels:
+   app: my-service
+   environment: dev
+spec:
+  containers:
+    - name: nginx-container
+      image: nginx
+      imagePullPolicy: Always

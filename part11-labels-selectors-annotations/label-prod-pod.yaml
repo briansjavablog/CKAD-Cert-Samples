@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+ name: prod-pod
+ labels:
+   app: my-service
+   environment: prod
+spec:
+  containers:
+    - name: nginx-container
+      image: nginx
+      imagePullPolicy: Always

@@ -1,0 +1,15 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: cronjob-sample
+spec:
+  schedule: "*/1 * * * *" #run every minute
+  jobTemplate:
+    spec: # Job Spec
+      template: # Pod Template
+        spec: # Pod Spec
+          containers:
+            - name: cron-container
+              image: busybox
+              command: ['sh', '-c', 'date; echo CronJob running!!']
+          restartPolicy: OnFailure

@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: sample-network-policy
+spec:
+  podSelector:
+    matchLabels:
+      app: secure-app
+  policyTypes:
+  - Ingress
+  - Egress
+  ingress: # traffic coming into the Pod
+    - from:
+        - podSelector:
+            matchLabels:
+              allow-access: "true" # allow inbound traffic from Pods that have this label
+      ports:
+        - protocol: TCP
+          port: 6379
+  egress: # traffic coming into the Pod
+    - to:
+        - podSelector:
+            matchLabels:
+              allow-access: "true" # allow outbound traffic to Pods that have this label
+      ports:
+        - protocol: TCP
+          port: 6379

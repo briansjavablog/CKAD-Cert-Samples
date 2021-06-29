@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: demo-pvc-pod
+spec:
+  containers:
+    - name: pvc-container
+      image: busybox
+      imagePullPolicy: IfNotPresent
+      command: ['/bin/sh', '-c', 'while true; do sleep 3600; done']
+      volumeMounts:
+        - name: demo-pvc
+          mountPath: 'tmp/pvc-data'
+  volumes:
+    - name: demo-pvc
+      persistentVolumeClaim:
+        claimName: demo-pvc
